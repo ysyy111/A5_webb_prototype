@@ -1,0 +1,333 @@
+@media (min-width: 320px) and (max-width: 767px) {
+	body{
+		background-color: rgba(231, 224, 249, 0.93);
+	}
+	.my-wrap{
+		padding: 12px 12px 100px 12px;
+	}
+	.menu{
+		display: none;
+	}
+	.moblie-logo {
+		display: flex;
+		position: absolute;
+		justify-content: center;
+		align-items: center;
+	}
+	.moblie-logo .logo{
+		width: 100px;
+	}
+	.moblie-logo .name{
+		position: absolute;
+		margin-top: 20px;
+	}
+	.moblie-menu{
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		display: flex;
+		width: 100%;
+		height: 85px;
+		background-color: rgba(96, 85, 117, 0.93);
+		z-index: 99;
+		align-items: center;
+		justify-content: center;
+	}
+	.width60{
+		width: 60px !important;
+	}
+	.moblie-menu a{
+		display: inline-block;
+		text-align: center;
+		width: 70px;
+	}
+	
+	.course {
+		padding: 0px;
+	}
+	
+	.course-list{
+		flex-wrap: nowrap;
+		flex-direction: column;
+	}
+	.course-item-wrap:nth-child(1n) {
+	    justify-content: center;
+	}
+	.course-item-wrap:nth-child(2n) {
+	    justify-content: center;
+	}
+	
+	.course-item .course-content{
+		width: 300px;
+	}
+	
+	.content-right.todolist{
+		display: none;
+	}
+	
+	.home-top{
+		margin-top: 80px;
+		padding: 32px 0;
+	}
+	
+	.home-top .size36{
+		font-size: 30px;
+	}
+	
+	.home-top .size24 {
+		font-size: 16px;
+	}
+	
+	.home-top .right img{
+		width: 24px;
+	}
+	
+	.course .size36{
+		font-size: 30px;
+	}
+	
+	.course-item-wrap{
+		width: 100%;
+	}
+	
+	.center{
+		width: 100%;
+	}
+	
+	.calendar-right{
+		position: fixed;
+		left: 0;
+		top: 0;
+		width:calc(100% - 24px);
+		max-width: calc(100% - 24px);
+		padding-right: 12px;
+		height: 100vh;
+		display: none;
+	}
+	
+	.calendar-right .top60{
+		margin-top: 0;
+	}
+	
+	.calendar-item {
+		width: 150px;
+		min-height: 150px;
+		border: 0.1px solid #ccc;
+	}
+	
+	.calendar-list{
+		justify-content: center;
+	}
+	
+	.date-value{
+		font-size: 24px;
+	}
+	
+	.calendar-header{
+		align-items: center;
+	}
+	
+	.calendar-header .left60{
+		margin-left: 12px;
+	}
+	
+	.calendar-header .left48{
+		margin-left: 12px;
+	}
+	
+	.calendar-header .left60 img ,.calendar-header .left48 img{
+		width: 20px;
+	}
+	
+	.pc{
+		display: none;
+	}
+	.moblie{
+		display: flex;
+	}
+	.add{
+		display: block;
+		font-size: 40px;
+		position: absolute;
+		top: 12px;
+		left: 12px;
+	}
+	
+	.calendar-content{
+		margin-left: 0;
+		margin-top: 60px;
+	}
+	
+	.timer-content{
+		padding: 0;
+	}
+	
+	.timer{
+		width: 100%;
+		border-radius: 0;
+		border: none;
+		background-color: transparent;
+		margin-top: 60px;
+		align-items: flex-start;
+	}
+	
+	.timer-title {
+	    top: 0px;
+	    left: 12px;
+		font-size: 30px;
+	}
+	
+	.timer-timer{
+		margin-top: 12px;
+		width: 260px;
+		height: 255px;
+	}
+	
+	.schedule-task {
+		border: 0;
+		border-radius: 0;
+		background-color: transparent;
+		height: auto;
+		margin-top: 12px;
+	}
+	
+	.schedule-task-title{
+		margin-top: 0;
+		margin-left: 12px;
+		font-size: 30px;
+	}
+	
+	.schedule-task-courses{
+		margin-left: 12px;
+		font-size: 24px;
+	}
+	
+	.schedule-task-courses-list {
+		padding: 0;
+	}
+	
+	.timer {
+		justify-content: center;
+		align-items: center;
+		margin-top: 12px;
+	}
+	
+	.timer-value{
+		font-size: 40px;
+	}
+	
+	.timer-value input {
+		font-size: 36px;
+		width: 42px;
+	}
+	
+	
+	.timer-label {
+		font-size: 14px;
+	}
+	
+	.music-content{
+		padding: 0;
+		padding-right: 12px;
+	}
+	
+	.music-content .size36{
+		font-size: 30px;
+	}
+	
+	.music-wrap {
+		width: auto;
+		height: auto;
+	}
+	
+	.music-name {
+		font-size: 24px;
+	}
+	
+	.progress{
+		width: 300px;
+		margin-top: 24px;
+	}
+	
+	.music-content .left140 {
+		margin-left: 70px;
+	}
+	
+	.library-content{
+		margin: 0;
+		padding: 0;
+		border-radius: 0;
+	}
+	
+	.library-content{
+		flex-direction: column;
+	}
+	.library-wrap{
+		padding: 0 0 100px 0 !important;
+		margin-top: 24px;
+	}
+	.library-content {
+		padding: 24px 12px;
+	}
+	.library-content .title{
+		font-size: 32px;
+	}
+	
+	.library-content .size30{
+		font-size: 24px;
+	}
+	
+	.library-content .size22{
+		font-size: 16px;
+	}
+	
+	.library-content .left .item {
+	    width: 40vw;
+	    height: 60px;
+	    font-size: 20px;
+		margin-bottom: 12px;
+	}
+	
+	.library-content .top108{
+		margin-top: 48px;
+	}
+	
+	.library-content .list{
+		padding-right: 20px;
+		width: calc(100vw - 12px);
+	}
+	.library-content .left{
+		width: 100vw;
+		padding-right: 40px;
+	}
+	.library-content .search{
+		width: 300px;
+		margin-top: 48px;
+	}
+	
+	.search-content{
+		width: 100%;
+		left: 0;
+	}
+	.library-content .right {
+		width: 100vw;
+		padding-right: 24px;
+	}
+	.library-content .right .article {
+		width: 100vw;
+		padding: 0 24px;
+		font-size: 24px;
+		border: none;
+	}
+	.library-content .left .item .delete{
+		width: 20px;
+	}
+	
+	.timer-btn {
+		margin-top: 48px;
+	}
+	
+	.search .close{
+		right: 0;
+	}
+}
