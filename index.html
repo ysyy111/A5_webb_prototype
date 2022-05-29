@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<link href="css/base.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/mobile.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="flex my-wrap">
+			<div class="menu flex-column">
+				<div class="menu-top">
+					<img src="images/logo.png" class="logo" />
+					<span class="name">STUDB</span>
+				</div>
+
+				<div class="menu-list flex-column">
+					<a href="#"><img src="images/icon-home.png" class="icon1" /></a>
+					<a href="calendar.html"><img src="images/icon-calendar.png" class="icon2" /></a>
+					<a href="timer.html"><img src="images/icon-timer.png" class="icon3" /></a>
+					<a href="music.html"><img src="images/icon-music.png" class="icon4" /></a>
+					<a href="library.html"><img src="images/icon-library.png" class="icon5" /></a>
+				</div>
+			</div>
+			<div class="moblie-logo hide">
+				<img src="images/logo.png" class="logo" />
+				<span class="name">STUDB</span>
+			</div>
+			<div class="moblie-menu hide">
+				<a href="#" class="width60">
+					<img  src="images/moblie-home2.png"/>
+				</a>
+				<a href="calendar.html">
+					<img  src="images/mobile-calendar.png"/>
+				</a>
+				<a href="timer.html">
+					<img  src="images/mobile-timer.png"/>
+				</a>
+				<a href="music.html">
+					<img  src="images/mobile-music.png"/>
+				</a>
+				<a href="library.html">
+					<img  src="images/mobile-library.png"/>
+				</a>
+			</div>
+			<div class="content flex">
+				<div class="flex-column content-content">
+					<div class="home-top flex">
+						<div class="left">
+							<p class="size36">Hello, User</p>
+							<p class="size24 top24">What would you like to do today?</p>
+						</div>
+						<div class="right">
+							<img src="images/icon-search.png" />
+						</div>
+					</div>
+					<div class="course">
+						<div class="flex justify-space-between">
+							<p class="size36">Courses</p>
+							<p class="size20 edit-btn" id="edit">Edit</p>
+						</div>
+						<div class="course-list flex">
+							<div class="course-item-wrap flex">
+								<div draggable="true" class="course-item flex align-items-center">
+									<div class="course-content flex align-items-center">
+										<p class="size40 left24">Deco2200</p>
+										<img src="images/icon-action.png" class="icon-action" />
+									</div>
+									<div class="left12 hide delete" onclick="onDelete(this)">
+										<img src="images/icon-delete.png" class="icon-delete" />
+									</div>
+								</div>
+							</div>
+							<div class="course-item-wrap flex">
+								<div draggable="true" class="course-item flex align-items-center">
+									<div class="course-content bg2 flex align-items-center">
+										<p class="size40 left24">Deco1016</p>
+										<img src="images/icon-action.png" class="icon-action" />
+									</div>
+									<div class="left12 hide delete" onclick="onDelete(this)">
+										<img src="images/icon-delete.png" class="icon-delete" />
+									</div>
+								</div>
+							</div>
+							<div class="course-item-wrap flex">
+								<div draggable="true" class="course-item flex align-items-center">
+									<div class="course-content bg3 flex align-items-center">
+										<p class="size40 left24">Deco2018</p>
+										<img src="images/icon-action.png" class="icon-action" />
+									</div>
+									<div class="left12 hide delete" onclick="onDelete(this)">
+										<img src="images/icon-delete.png" class="icon-delete" />
+									</div>
+								</div>
+							</div>
+							<div class="course-item-wrap flex">
+								<div draggable="true" class="course-item flex align-items-center">
+									<div class="course-content bg4 flex align-items-center">
+										<p class="size40 left24">Deco2019</p>
+										<img src="images/icon-action.png" class="icon-action" />
+									</div>
+									<div class="left12 hide delete" onclick="onDelete(this)">
+										<img src="images/icon-delete.png" class="icon-delete" />
+									</div>
+								</div>
+							</div>
+							<div class="course-item-wrap flex">
+								<div draggable="true" class="course-item flex align-items-center">
+									<div class="course-content bg5 flex align-items-center">
+										<p class="size40 left24">Deco1002</p>
+										<img src="images/icon-action.png" class="icon-action" />
+									</div>
+									<div class="left12 hide delete" onclick="onDelete(this)">
+										<img src="images/icon-delete.png" class="icon-delete" />
+									</div>
+								</div>
+							</div>
+							<div class="course-item-wrap flex">
+								<div draggable="true" class="course-item flex align-items-center">
+									<div class="course-content bg6 flex align-items-center">
+										<p class="size40 left24">WRIT1000</p>
+										<img src="images/icon-action.png" class="icon-action" />
+									</div>
+									<div class="left12 hide delete" onclick="onDelete(this)">
+										<img src="images/icon-delete.png" class="icon-delete" />
+									</div>
+								</div>
+							</div>
+							<div class="course-item-wrap flex">
+								<div draggable="true" class="course-item flex align-items-center">
+									<div class="course-content bg7 flex align-items-center">
+										<p class="size40 left24">Deco2015</p>
+										<img src="images/icon-action.png" class="icon-action" />
+									</div>
+									<div class="left12 hide delete" onclick="onDelete(this)">
+										<img src="images/icon-delete.png" class="icon-delete" />
+									</div>
+								</div>
+							</div>
+							<div class="course-item-wrap flex">
+								<div draggable="true" class="course-item flex align-items-center">
+									<div class="course-content bg8 flex align-items-center">
+										<p class="size40 left24">Deco1016</p>
+										<img src="images/icon-action.png" class="icon-action" />
+									</div>
+									<div class="left12 hide delete" onclick="onDelete(this)">
+										<img src="images/icon-delete.png" class="icon-delete" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content-right todolist">
+					<p class="title div-center">TO DO</p>
+					<div class="todo-list flex-column" id="list">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var edit = document.querySelector('#edit') //"edit" DOM Nodes
+			var deleteList = document.querySelectorAll('.delete') //"delete" DOM Nodes
+			var courseList = document.querySelectorAll('.course-item'); //"course-item" DOM Nodes
+			var taskList = localStorage.getItem('taskList') ? JSON.parse(localStorage.getItem('taskList')) : {};//"Tasks" in the cache
+			var list = document.querySelector('#list') //"list" DOM Nodes
+			
+			//render todo list
+			
+			console.log(taskList)
+			for (i in taskList) {
+				list.innerHTML += `
+					<div class="todo-item flex">
+						<div>
+							<img src="images/icon1.png" class="todolist-icon" />
+						</div>
+						<div class="context">
+							<p>${taskList[i].title}</p>
+							<p class="todolist-content">
+								${taskList[i].description}
+							</p>
+					</div>
+				</div>
+			   `
+			}
+
+			console.log(courseList)
+
+			//Edit
+			edit.addEventListener('click', function() {
+				for (let i = 0; i < deleteList.length; i++) {
+					
+					if (deleteList[i].classList.contains('hide')) {
+						//Show
+						deleteList[i].classList.remove('hide')
+					} else {
+						//Hide
+						deleteList[i].classList.add('hide')
+					}
+				}
+			})
+
+			for (let i = 0; i < courseList.length; i++) {
+				var offsetX, offsetY;
+				//Drag function on PC
+				courseList[i].addEventListener('dragstart', function(event) {
+					console.log('dragstart', event.target)
+					offsetX = event.clientX - courseList[i].offsetLeft;
+					offsetY = event.clientY - courseList[i].offsetTop;
+				})
+				//Drag function on PC
+				courseList[i].addEventListener('drag', function(event) {
+					console.log('drag', event)
+
+					courseList[i].style.position = 'absolute';
+					courseList[i].style.left = (event.x - offsetX) + 'px';
+					courseList[i].style.top = (event.y - offsetY) + 'px';
+				}, false)
+				//Drag function on PC
+				courseList[i].addEventListener('dragover', function(event) {
+					console.log(event)
+					event.preventDefault()
+				})
+				
+				
+				//Drag function on moblie
+				courseList[i].addEventListener('touchstart',function(event){
+					event.preventDefault()
+					console.log(event.targetTouches[0])
+					offsetX = event.targetTouches[0].clientX - courseList[i].offsetLeft;
+					offsetY = event.targetTouches[0].clientY - courseList[i].offsetTop;
+					console.log(offsetX)
+				})
+				//Drag function on moblie
+				courseList[i].addEventListener('touchmove', function(event) {
+					console.log(event)
+					event.preventDefault()
+					 let element = event.targetTouches[0]
+
+					 courseList[i].style.position = 'absolute';
+					 courseList[i].style.left = (element.clientX - offsetX)+ 'px';
+					 courseList[i].style.top = (element.clientY - offsetY)+ 'px';
+				}, false)
+				//Drag function on moblie
+				courseList[i].addEventListener('touchend', function(event) {
+					event.preventDefault()
+				})
+			}
+			
+			//Function of "Delete the course"
+			function onDelete(obj) {
+				obj.parentNode.parentNode.remove()
+			}
+		</script>
+	</body>
+</html>
