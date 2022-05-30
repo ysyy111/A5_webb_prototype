@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<link href="css/base.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/mobile.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="flex my-wrap">
+			<div class="menu flex-column">
+				<div class="menu-top">
+					<img src="images/logo.png" class="logo" />
+					<span class="name">STUDB</span>
+				</div>
+
+				<div class="menu-list flex-column">
+					<a href="index.html"><img src="images/icon-home2.png" class="icon1" /></a>
+					<a href="#"><img src="images/icon-calendar2.png" class="icon2" /></a>
+					<a href="timer.html"><img src="images/icon-timer.png" class="icon3" /></a>
+					<a href="music.html"><img src="images/icon-music.png" class="icon4" /></a>
+					<a href="library.html"><img src="images/icon-library.png" class="icon5" /></a>
+				</div>
+			</div>
+			<div class="add hide" id="add">
+				+
+			</div>
+			<div class="moblie-menu hide">
+				<a href="index.html" class="width60">
+					<img  src="images/moblie-home.png"/>
+				</a>
+				<a href="#">
+					<img  src="images/mobile-calendar2.png"/>
+				</a>
+				<a href="timer.html">
+					<img  src="images/mobile-timer.png"/>
+				</a>
+				<a href="music.html">
+					<img  src="images/mobile-music.png"/>
+				</a>
+				<a href="library.html">
+					<img  src="images/mobile-library.png"/>
+				</a>
+			</div>
+			<div class="content flex">
+				<div class="content-content calendar-content">
+					<div class="flex calendar-header">
+						<span class="date-value" id="select-month"><span id="year-label"></span> / <span id="month-label"></span> </span>
+						<div class="left60" onclick="prevYear()">
+							<img  src="images/arrows-up.png"/>
+						</div>
+						<div class="left48" onclick="nextYear()">
+							<img  src="images/arrows-down.png"/>
+						</div>
+						<div class="month-value-wrap hide flex" id="month-list">
+							<div id="month-value-list" class="month-value-list flex">
+								<span value="1">1</span>
+								<span value="2">2</span>
+								<span value="3">3</span>
+								<span value="4">4</span>
+								<span value="5">5</span>
+								<span value="6">6</span>
+								<span value="7">7</span>
+								<span value="8">8</span>
+								<span value="9">9</span>
+								<span value="10">10</span>
+								<span value="11">11</span>
+								<span value="12">12</span>
+							</div>
+						</div>
+						<div class="level-list">
+							<div class="flex level-item">
+								<div class="level-dot"></div>
+								<div class="left12">Low</div>
+							</div>
+							<div class="flex level-item">
+								<div class="level-dot bg2"></div>
+								<div class="left12">Med</div>
+							</div>
+							<div class="flex level-item">
+								<div class="level-dot bg3"></div>
+								<div class="left12">High</div>
+							</div>
+						</div>
+					</div>
+					<div class="calendar-list flex" id="list">
+					</div>
+				</div>
+				<div id="calendar-right" class="content-right calendar-right flex-column">
+					<p class="calendar-title div-center">New To Do</p>
+					<input type="text" id="title" placeholder="Title..."  class="input-title"/>
+					<div class="flex align-items-center select-course-wrap">
+						<span class="size16 top12">Course(Optional)</span>
+						<select class="top12 select-course" id="course-value">
+							<option value="">none</option>
+							<option value="Deco2200">Deco2200</option>
+							<option value="Deco1016">Deco1016</option>
+							<option value="Deco2018">Deco2018</option>
+							<option value="Deco2019">Deco2019</option>
+							<option value="Deco1002">Deco1002</option>
+							<option value="Deco2015">Deco2015</option>
+						</select>
+					</div>
+					<div class="flex-column select-date-wrap">
+						<span>Date</span>
+						<input class="top24" id="date" type="date"/>
+					</div>
+					<textarea class="description" id="description" placeholder="Description..."></textarea>
+					<div class="top60 flex add-btn pc">
+						<button onclick="cancel()">Cancel</button>
+						<button onclick="addTask()">Done</button>
+					</div>
+					<div class="top60 flex add-btn moblie hide">
+						<button onclick="cancelMoblie()">Cancel</button>
+						<button onclick="addTaskMoblie()">Done</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var yearDom = document.querySelector('#year-label'); //"year" DOM Nodes
+			var monthDon = document.querySelector('#month-label'); //"month" DOM Nodes
+			var selectMonth = document.querySelector('#select-month'); //"select-month" DOM Nodes
+			var monthList = document.querySelector('#month-list'); //"month-list" DOM Nodes
+			var monthValueList = document.querySelectorAll('#month-value-list span'); //"monthValueList" DOM Nodes
+			var list = document.querySelector('#list');  //"list" DOM Nodes
+		 	var taskList = localStorage.getItem('taskList') ? JSON.parse(localStorage.getItem('taskList'))  : {}  //task in the Cache
+			var title = document.querySelector('#title'); //"titile of task" DOM Nodes
+			var selectCourse = document.querySelector('#course-value');//"Course" DOM Nodes
+			var dateInput = document.querySelector('#date'); //"Date of task" DOM Nodes
+			var description = document.querySelector('#description'); //"Description of task" DOM Nodes
+			var add = document.querySelector('#add'); //"open the task on mobile" DOM Nodes
+			var calendarRight = document.querySelector('#calendar-right'); 
+			
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = date.getMonth() + 1;
+			
+			yearDom.innerHTML = year;
+			monthDon.innerHTML = month;
+			
+			render()
+			
+			add.addEventListener('click',function(){
+				calendarRight.style.display = 'flex'
+			})
+			
+			//render the calendar
+			function render () {
+				list.innerHTML = '';
+				var days = getMonthDays(year,month);
+				
+				for (var i=0; i<days;i++) {
+					var day = i+1
+					var value = year + '' + month + '' + day;
+					var taskHtml = '';
+					if (taskList[value]) {
+						taskHtml = `
+						<div>
+							<div class="top6 flex height70">
+								<div class="left">
+									<img src="images/icon1.png"/>
+									<div class="dot"></div>
+								</div>
+								<div class="left12">
+									${taskList[value].description}
+								</div>
+							</div>
+							<div class="top6 div-center color-red">Not Done</div>
+							<div class="flex justify-content-center">
+								<div>
+									<img  src="images/clock.png"/>
+								</div>
+								<p class="left6">24 hours to complete</p>
+							</div>
+						</div>
+						`
+					} else {
+						taskHtml = '';
+					}
+					list.innerHTML += `
+						<div class="calendar-item flex-column">
+							<span class="month">${i+1}</span>
+							${taskHtml}
+						</div>
+					`
+				}
+			}
+			
+			
+			//get how many days of that month
+			function getMonthDays(year,month){
+			    var stratDate = new Date(year,month-1,1),
+			         endData = new Date(year,month,1);
+			    var days = (endData -stratDate)/(1000*60*60*24);
+			    return days;
+			}
+			
+			//Last year
+			function prevYear(){
+				year = year - 1;
+				yearDom.innerHTML = year;
+				
+				render()
+			}
+			
+			//Next year
+			function nextYear(){
+				year = year + 1;
+				yearDom.innerHTML = year;
+				
+				render()
+			}
+			
+			//Show selct month option
+			selectMonth.addEventListener('click',function(){
+				if (monthList.classList.contains('hide')) {
+					monthList.classList.remove('hide')
+				} else{
+					monthList.classList.add('hide')
+				}
+			})
+			
+			
+			//Select month
+			for (let i=0; i<monthValueList.length; i++) {
+				monthValueList[i].addEventListener('click',function(){
+					month = monthValueList[i].getAttribute('value');
+					monthDon.innerHTML = month;
+					monthList.classList.add('hide');
+					
+					render()
+				})
+			}
+			
+			//Cancel on PC
+			function cancel(){
+				title.value = '';
+				description.value = '';
+				selectCourse.value = '';
+				dateInput.value = ''
+			}
+			
+			//Cnacel on monile
+			function cancelMoblie(){
+				calendarRight.style.display = 'none'
+				cancel()
+			}
+			
+			//Add task on PC
+			function addTask(){
+				var time = new Date(dateInput.value)
+				var dateVal = time.getFullYear() + '' + (time.getMonth() + 1) +'' + time.getDate()
+				
+				taskList[dateVal] = {
+					title:title.value,
+					description:description.value,
+					course:selectCourse.value
+				}
+				localStorage.setItem('taskList',JSON.stringify(taskList));
+				taskList = localStorage.getItem('taskList') ? JSON.parse(localStorage.getItem('taskList'))  : {};
+				cancel()
+				render()
+			}
+			
+			//Add task on mobile
+			function addTaskMoblie(){
+				calendarRight.style.display = 'none'
+				addTask()
+			}
+		</script>
+	</body>
+</html>
