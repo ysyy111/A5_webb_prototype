@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<link href="css/base.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/mobile.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="flex my-wrap">
+			<div class="menu flex-column">
+				<div class="menu-top">
+					<img src="images/logo.png" class="logo" />
+					<span class="name">STUDB</span>
+				</div>
+
+				<div class="menu-list flex-column">
+					<a href="index.html"><img src="images/icon-home2.png" class="icon1" /></a>
+					<a href="calendar.html"><img src="images/icon-calendar.png" class="icon2" /></a>
+					<a href="#"><img src="images/icon-timer2.png" class="icon3" /></a>
+					<a href="music.html"><img src="images/icon-music.png" class="icon4" /></a>
+					<a href="library.html"><img src="images/icon-library.png" class="icon5" /></a>
+				</div>
+			</div>
+			<div class="moblie-menu hide">
+				<a href="index.html" class="width60">
+					<img  src="images/moblie-home.png"/>
+				</a>
+				<a href="calendar.html">
+					<img  src="images/mobile-calendar.png"/>
+				</a>
+				<a href="#">
+					<img  src="images/mobile-timer2.png"/>
+				</a>
+				<a href="music.html">
+					<img  src="images/mobile-music.png"/>
+				</a>
+				<a href="library.html">
+					<img  src="images/mobile-library.png"/>
+				</a>
+			</div>
+			<div class="content flex">
+				<div class="flex-column content-content timer-content">
+					<div class="timer flex-column">
+						<div class="timer-timer flex-column">
+							<div class="flex timer-value">
+								<span id="hours-value">00</span>
+								<input class="hide" type="number" id="hours-input" value="00"/>
+								<span>:</span>
+								<span id="minute-value">00</span>
+								<input class="hide" type="number" id="minute-input" value="00"/>
+								<span>:</span>
+								<span id="second-value">00</span>
+								<input class="hide" type="number" id="second-input" value="00"/>
+							</div>
+							<div class="flex timer-label top8">
+								<div class="left24">Hour</div>
+								<div class="left24">Minute</div>
+								<div class="left24">Second</div>
+							</div>
+						</div>
+						<div class="timer-btn flex">
+							<button onclick="stop()">Stop</button>
+							<button onclick="start()">Start</button>
+							<button onclick="reset()">Reset</button>
+						</div>
+						<div class="timer-title">Timer</div>
+					</div>
+					<div class="schedule-task top48">
+						<div class="schedule-task-title">Schedule&Task</div>
+						<div class="top12 schedule-task-courses">Courses</div>
+						<div class="course-list schedule-task-courses-list top12 flex">
+							<div class="course-item-wrap flex">
+								<div draggable="true" class="course-item flex align-items-center">
+									<div class="course-content flex align-items-center">
+										<p class="size40 left24">Deco2200</p>
+										<img src="images/icon-action.png" class="icon-action" />
+									</div>
+									<div class="left12 delete">
+										<input class="bty-switch" type="checkbox" checked/>
+									</div>
+								</div>
+							</div>
+							<div class="course-item-wrap flex">
+								<div draggable="true" class="course-item flex align-items-center">
+									<div class="course-content bg2 flex align-items-center">
+										<p class="size40 left24">Deco2200</p>
+										<img src="images/icon-action.png" class="icon-action" />
+									</div>
+									<div class="left12  delete">
+										<input class="bty-switch" type="checkbox" />
+									</div>
+								</div>
+							</div>
+							<div class="course-item-wrap flex">
+								<div draggable="true" class="course-item flex align-items-center">
+									<div class="course-content bg3 flex align-items-center">
+										<p class="size40 left24">Deco2200</p>
+										<img src="images/icon-action.png" class="icon-action" />
+									</div>
+									<div class="left12 delete">
+										<input class="bty-switch" type="checkbox" />
+									</div>
+								</div>
+							</div>
+							<div class="course-item-wrap flex">
+								<div draggable="true" class="course-item flex align-items-center">
+									<div class="course-content bg6 flex align-items-center">
+										<p class="size40 left24">Deco2200</p>
+										<img src="images/icon-action.png" class="icon-action" />
+									</div>
+									<div class="left12 delete">
+										<input class="bty-switch" type="checkbox" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			let hoursValue = document.querySelector('#hours-value') // "show hours-value" DOM Nodes
+			let minuteValue = document.querySelector('#minute-value')// "show minute-value" DOM Nodes
+			let secondValue = document.querySelector('#second-value')// "show secon-value" DOM Nodes
+			
+			let hoursInput = document.querySelector('#hours-input') // "hours-input" DOM Nodes
+			let minuteInput= document.querySelector('#minute-input') // "minute-input" DOM Nodes
+			let secondInput = document.querySelector('#second-input') // "second-input" DOM Nodes
+			
+			let currentHours = 0; // "hours-value" DOM Nodes
+			let currentMinute = 0; // "minute-value" DOM Nodes
+			let currentSecond = 0; // "second-value" DOM Nodes
+			let timer = null; // "timer" DOM Nodes
+			let allTime = 0;  // "Total number of seconds to count down" DOM Nodes
+			let useTime = 0; // "The use time of the countdown" DOM Nodes
+			let currentNumber = 1;  // "rest times" DOM Nodes
+			
+			//hours Display input form
+			hoursValue.addEventListener('click',function(){
+				hoursValue.classList.add('hide')
+				hoursInput.classList.remove('hide')
+				hoursInput.focus();
+			})
+			
+			//hours input blur function
+			hoursInput.addEventListener('blur',function(){
+				hoursValue.classList.remove('hide')
+				hoursInput.classList.add('hide')
+				
+				currentHours = Number(hoursInput.value)
+				
+				console.log(Number(hoursInput.value))
+				if (Number(hoursInput.value) < 10) {
+					hoursInput.value = '0' + Number(hoursInput.value)
+				} else {
+					hoursInput.value = Number(hoursInput.value)
+				}
+				hoursValue.innerHTML = hoursInput.value
+			})
+			
+			
+			//click minutes to display minute input form
+			minuteValue.addEventListener('click',function(){
+				minuteValue.classList.add('hide')
+				minuteInput.classList.remove('hide')
+				minuteInput.focus();
+			})
+			
+			//minute input blur function
+			minuteInput.addEventListener('blur',function(){
+				if (Number(minuteInput.value) > 60) {
+					alert("Can't be greater than 60");
+					minuteInput.value = '00'
+					return;
+				}
+				
+				minuteValue.classList.remove('hide')
+				minuteInput.classList.add('hide')
+				
+				currentMinute = Number(minuteInput.value )
+				if (Number(minuteInput.value) < 10) {
+					minuteInput.value = '0' + Number(minuteInput.value)
+				} else{
+					minuteInput.value = Number(minuteInput.value)
+				}
+				minuteValue.innerHTML = minuteInput.value
+			})
+			
+			//click second to display second input form
+			secondValue.addEventListener('click',function(){
+				secondValue.classList.add('hide')
+				secondInput.classList.remove('hide')
+				secondInput.focus();
+			})
+			//second input blur function
+			secondInput.addEventListener('blur',function(){
+				if (Number(secondInput.value) > 60) {
+					alert("Can't be greater than 60")
+					secondValue.value = '00'
+					return;
+				}
+				
+				secondValue.classList.remove('hide')
+				secondInput.classList.add('hide')
+				
+				currentSecond = Number(secondInput.value)
+				
+				if (Number(secondInput.value) < 10) {
+					secondInput.value = '0' + Number(secondInput.value)
+				} else{
+					secondInput.value = Number(secondInput.value)
+				}
+				secondValue.innerHTML = secondInput.value
+			})
+			
+			
+			
+			//stop timer
+			function stop(){
+				clearInterval(timer);
+				timer = null;
+								
+			}
+			
+			//Start the countdown
+			function start(){
+				if (!timer) {
+					allTime = currentHours * 60 * 60 + currentMinute*60 +  currentSecond;
+					
+					timer = setInterval(function(){
+						if (allTime == 0) { //When time runs out
+							clearInterval(timer);
+							timer = null;
+							alert('Time out')
+							currentSecond = 0;
+							currentMinute = 0;
+							currentHours = 0;
+							
+							hoursValue.innerHTML = '00'
+							minuteValue.innerHTML = '00'
+							secondValue.innerHTML ='00'
+							
+							hoursInput.value = '00'
+							minuteInput.value = '00'
+							secondInput.value = '00';
+							return;
+						}
+						//Fourth break
+						if (currentNumber == 4) {
+							if (useTime == 4 * 25 * 60) {
+								currentNumber ++;
+								stop();
+								
+								setTimeout(() => {
+									start();
+								},30 * 60 * 1000);
+								return;
+							}
+						} else{
+							//another rest times
+							if (useTime == currentNumber * (25 * 60)) {
+								currentNumber ++;
+								stop();
+								
+								setTimeout(() => {
+									start();
+								},5 * 60 * 1000);
+								return;
+							}
+						}
+						
+						//When the value of seconds is 0
+						if (currentSecond == 0) {
+							//When the minute value greater than 0
+							if (currentMinute > 0) {
+								currentMinute --;
+								currentSecond = 59;
+								secondValue.innerHTML = 59;
+								if (currentMinute < 10) {
+									minuteValue.innerHTML = '0' + currentMinute;
+								} else{
+									minuteValue.innerHTML = currentMinute;
+								}
+							} else {
+								//When the value of minutes is 0
+								if (currentHours > 0) {
+									currentMinute = 59;
+									minuteInput.innerHTML = 59;
+									currentHours --;
+									if (currentHours < 10) {
+										hoursValue.innerHTML = '0' + currentHours;
+									} else{
+										hoursValue.innerHTML = currentHours;
+									}
+								}
+							}
+							
+						} else{
+							//When the value of seconds is not 0
+							currentSecond --;
+							if (currentSecond < 10) {
+								secondValue.innerHTML = '0' + currentSecond;
+							} else{
+								secondValue.innerHTML = currentSecond;
+							}
+						}
+						allTime--;
+						useTime++;
+					},1000)
+					console.log('allTime',allTime)
+				}
+			}
+			
+			//reset timer
+			function reset(){
+				clearInterval(timer);
+				timer = null;
+				allTime = 0;
+				currentSecond = 0;
+				currentMinute = 0;
+				currentHours = 0;
+				
+				hoursValue.innerHTML = '00'
+				minuteValue.innerHTML = '00'
+				secondValue.innerHTML ='00'
+				
+				hoursInput.value = '00'
+				minuteInput.value = '00'
+				secondInput.value = '00';
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<link href="css/base.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/mobile.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="flex my-wrap">
+			<div class="menu flex-column">
+				<div class="menu-top">
+					<img src="images/logo.png" class="logo" />
+					<span class="name">STUDB</span>
+				</div>
+
+				<div class="menu-list flex-column">
+					<a href="index.html"><img src="images/icon-home2.png" class="icon1" /></a>
+					<a href="calendar.html"><img src="images/icon-calendar.png" class="icon2" /></a>
+					<a href="timer.html"><img src="images/icon-timer.png" class="icon3" /></a>
+					<a href="#"><img src="images/icon-music2.png" class="icon4" /></a>
+					<a href="library.html"><img src="images/icon-library.png" class="icon5" /></a>
+				</div>
+			</div>
+			<div class="content flex">
+				<div class="content-content music-content flex-column">
+					<p class="size36">NOW PLAYING</p>
+					<div class="top24 music-wrap flex">
+						<img src="images/music.jpeg" />
+					</div>
+					<div class="music-name top48" id="name">Still Lift</div>
+					<div class="top12 size16" id="author">BIGBANG</div>
+					<div class="progress top12">
+						<div class="line"></div>
+						<div class="dot"></div>
+					</div>
+					<div class="top48 flex align-items-center">
+						<div>
+							<img src="images/left.png" id="left" />
+						</div>
+						<div class="left48 start flex" id="start">
+							<img src="images/start.png" />
+							<img src="images/btn.png" class="start-btn" id="start-btn" />
+							<div class="flex pause hide" id="pause-btn">
+								<div></div>
+								<div class="left8"></div>
+							</div>
+						</div>
+						<div class="left48">
+							<img src="images/right.png" id="right" />
+						</div>
+					</div>
+					<div class="top48 flex align-items-center">
+						<div>
+							<img src="images/share.png" />
+						</div>
+						<div class="music-menu left140">
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						<div class="left140">
+							<img src="images/like.png" />
+						</div>
+					</div>
+					<audio src="./music/1.mp3" controls="controls" preload id="music" hidden></audio>
+				</div>
+			</div>
+		</div>
+		<script>
+			var list = [{
+					name: 'Still Lift',
+					author: 'BIGBANG',
+					src: './music/1.mp3'
+				},
+				{
+					name: '무제(无题) (Untitled, 2014)',
+					author: 'G-DRAGON (权志龙)',
+					src: './music/2.mp3'
+				},
+				{
+					name: 'Anyone',
+					author: 'Justin Bieber',
+					src: './music/3.mp3'
+				}
+			];//Music List
+			var start = document.querySelector('#start') //"Start" DOM Nodes
+			var left = document.querySelector('#left') //"Last song" DOM Nodes
+			var right = document.querySelector('#right') //"Next song" DOM Nodes
+			var music = document.querySelector('#music') //"components of music" DOM Nodes
+			var current = 0; //"The current number of songs" DOM Nodes
+			var startBtn = document.querySelector('#start-btn') //"start-btn" DOM Nodes
+			var pauseBtn = document.querySelector('#pause-btn') //"pause-btn" DOM Nodes
+			var musicName = document.querySelector('#name') //"name of music" DOM Nodes
+			var musicAuthor = document.querySelector('#author') //"author of music" DOM Nodes
+			
+			
+			
+			start.addEventListener('click', function() {
+				if (music !== null) {
+					if (music.paused) {
+						//play music
+						startBtn.classList.add('hide')
+						pauseBtn.classList.remove('hide')
+						music.play();
+					} else {
+						//pause music
+						startBtn.classList.remove('hide')
+						pauseBtn.classList.add('hide')
+						music.pause();
+					}
+				}
+			})
+			
+			//Switch to last song
+			left.addEventListener('click', function() {
+				if (current == 0) {
+					current = list.length - 1
+				} else {
+					current -= 1;
+				}
+				
+				console.log(name)
+				music.setAttribute('src', list[current].src);
+				musicName.innerHTML = list[current].name;
+				musicAuthor.innerHTML = list[current].author;
+				startBtn.classList.add('hide')
+				pauseBtn.classList.remove('hide')
+				music.play();
+			})
+
+			//Switch to next song
+			right.addEventListener('click', function() {
+				if (current == list.length - 1) {
+					current = 0;
+				} else {
+					current += 1;
+				}
+
+				music.setAttribute('src', list[current]);
+				musicName.innerHTML = list[current].name;
+				musicAuthor.innerHTML = list[current].author;
+				startBtn.classList.add('hide')
+				pauseBtn.classList.remove('hide')
+				music.play();
+			})
+		</script>
+	</body>
+</html>
