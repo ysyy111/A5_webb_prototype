@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<link href="css/base.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/mobile.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="flex my-wrap library-wrap">
+			<div class="menu flex-column">
+				<div class="menu-top">
+					<img src="images/logo.png" class="logo" />
+					<span class="name">STUDB</span>
+				</div>
+
+				<div class="menu-list flex-column">
+					<a href="index.html"><img src="images/icon-home2.png" class="icon1" /></a>
+					<a href="calendar.html"><img src="images/icon-calendar.png" class="icon2" /></a>
+					<a href="timer.html"><img src="images/icon-timer.png" class="icon3" /></a>
+					<a href="music.html"><img src="images/icon-music.png" class="icon4" /></a>
+					<a href="#"><img src="images/icon-library2.png" class="icon5" /></a>
+				</div>
+			</div>
+			<div class="moblie-menu hide">
+				<a href="index.html" class="width60">
+					<img  src="images/moblie-home.png"/>
+				</a>
+				<a href="calendar.html">
+					<img  src="images/mobile-calendar.png"/>
+				</a>
+				<a href="timer.html">
+					<img  src="images/mobile-timer.png"/>
+				</a>
+				<a href="music.html">
+					<img  src="images/mobile-music.png"/>
+				</a>
+				<a href="#">
+					<img  src="images/mobile-library2.png"/>
+				</a>
+			</div>
+			<div class="content flex">
+				<div class="flex content-content library-content">
+					<div class="left">
+						<p class="title">Library</p>
+						<div class="top24 size30 flex justify-space-between align-items-center">
+							<span>Article:</span>
+							<span class="size22" id="edit">Edit</span>
+						</div>
+						<div class="top108 flex list">
+							<div class="item flex align-items-center">
+								<p class="left24">Deco2200</p>
+								<img  src="images/icon-delete.png" class="delete hide" onclick="onDelete(this)"/>
+							</div>
+							<div class="item flex align-items-center item-bg2">
+								<p class="left24">Deco2200</p>
+								<img  src="images/icon-delete.png" class="delete hide" onclick="onDelete(this)"/>
+							</div>
+							<div class="item flex align-items-center item-bg3">
+								<p class="left24">Deco2200</p>
+								<img  src="images/icon-delete.png" class="delete hide" onclick="onDelete(this)"/>
+							</div>
+							<div class="item flex align-items-center  item-bg4">
+								<p class="left24">Deco2200</p>
+								<img  src="images/icon-delete.png" class="delete hide" onclick="onDelete(this)"/>
+							</div>
+							<div class="item flex align-items-center  item-bg5">
+								<p class="left24">Deco2200</p>
+								<img  src="images/icon-delete.png" class="delete hide" onclick="onDelete(this)"/>
+							</div>
+							<div class="item flex align-items-center  item-bg6">
+								<p class="left24">Deco2200</p>
+								<img  src="images/icon-delete.png" class="delete hide" onclick="onDelete(this)"/>
+							</div>
+						</div>
+					</div>
+					<div class="right flex-column">
+						<div class="flex top12 search align-items-center">
+							<div class="flex align-items-center">
+								<input id="keywords" type="text"  placeholder="Search definition..."/>
+								<img  src="images/icon-search.png" class="search-icon" id="search"/>
+							</div>
+							<div class="search-content hide" id="search-content"></div>
+							<img  src="images/close.png" class="close hide" id="close"/>
+						</div>
+						<div class="top48 article">
+							<p>Mohajan attempts to trace the history and the origin of the industrial revolution, in the wake of the industrial age. Citing England as the first country to experience the industrial revolution, the author highlights the life before the industrial age and the life after the inception of the first machine. As Mohajan writes, the living set-up in England was far from modern England in the fourth industrial revolution that we are currently experiencing. In the sixteenth century, people in England lived in villages. The common mode of transport was by foot, on narrow paths. As Mohajan proceeds, illness during this time was prevalent as there were poor hygienic living conditions, inadequate food, and the use of polluted water with a lack of a proper sewer system.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var edit = document.querySelector('#edit') //get "edit" DOM Nodes
+			var deleteList = document.querySelectorAll('.delete') //get "delete" DOM Nodes
+			var searchContent = document.querySelector('#search-content') //get "search-content"  DOM Nodes
+			var keywords = document.querySelector('#keywords') //get "keywords"  DOM Nodes
+			var search =  document.querySelector('#search') //get "search icon"  DOM Nodes
+			var close = document.querySelector('#close') //get "close icon"  DOM Nodes
+			
+			
+			//Edit
+			edit.addEventListener('click', function() {
+				for (let i = 0; i < deleteList.length; i++) {
+					if (deleteList[i].classList.contains('hide')) {
+						deleteList[i].classList.remove('hide')
+					} else {
+						deleteList[i].classList.add('hide')
+					}
+				}
+			})
+			
+			
+			//search function
+			search.addEventListener('click',function(){
+				var word = keywords.value;
+				word = word.trim()
+				if (!word) {
+					alert('please enter a keyword');
+					return;
+				}
+				
+				//Sending network Requests
+				const xhr = new XMLHttpRequest();
+				xhr.open('GET', 'https://api.dictionaryapi.dev/api/v2/entries/en/' + word)
+				xhr.send();
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState === 4) {
+						if (xhr.status == 200) {
+							var res  = JSON.parse(xhr.response);
+							var meanings = res[0].meanings[0]
+							console.log(meanings)
+							searchContent.innerHTML = '';
+							searchContent.innerHTML += `
+								<p class="size18">Meaning:</p>
+									<div class="top12" id="meaning">
+										${meanings.definitions[0].definition}
+									</div>
+									<p class="top12 size18">Synonyms:</p>
+									<div class="top12" id="synonyms">
+										${meanings.synonyms.join(' ') || 'none'}
+							   </div>`
+							searchContent.classList.remove('hide')
+							close.classList.remove('hide')
+						} else{
+							alert('error !');
+						}
+					}
+				}
+			})
+			
+			close.addEventListener('click',function(){
+				searchContent.classList.add('hide')
+				close.classList.add('hide')
+			})
+			
+			
+			//Delete function
+			function onDelete(obj) {
+				obj.parentNode.remove()
+			}
+		</script>
+	</body>
+</html>
